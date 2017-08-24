@@ -53,9 +53,9 @@ service id init
 exit
 service id send_data_to_ws
   on start
-    # system.property.write station_data (text.replace $system.station_data$ "version=\"1.0\""  "version=\\"1.0\\"")
-    # system.property.write station_data (text.replace $system.station_data$ "encoding=\"UTF-8\"" "encoding=\\"UTF-8\\"")
-    # system.property.write station_data (text.replace $system.station_data$ "standalone=\"yes\"" "standalone=\\"UTF-8\\"")
+    system.property.write station_data (text.replace $system.station_data$ "version=\"1.0\""  "version=\\"1.0\\"")
+    system.property.write station_data (text.replace $system.station_data$ "encoding=\"UTF-8\"" "encoding=\\"UTF-8\\"")
+    system.property.write station_data (text.replace $system.station_data$ "standalone=\"yes\"" "standalone=\\"yes\\"")
     # content = "{\"xml_data\":\"$system.station_data$\"}"
     content = $system.station_data
     interface.send websocket_server "$content$"

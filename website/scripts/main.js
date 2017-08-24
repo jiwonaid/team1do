@@ -9,17 +9,17 @@ ws.onmessage = function(message) {
   // data = JSON.parse(message.data);
   console.log(message);
   xml_data = message.data;
-        //  xmlDoc = xmlParser.parseFromString(xml_data.data, "text/xml");
-         //
-        //  // Expected arriving time 1
-        //  arrmsg1 = xmlDoc.getElementsByTagName("arrmsg1")[0].innerHTML;
-        //  // Expected arriving time 2
-        //  arrmsg2 = xmlDoc.getElementsByTagName("arrmsg2")[0].innerHTML;
-        //  // vehicle No which is planned to arrive first
-        //  plainNo1 = xmlDoc.getElementsByTagName("plainNo1")[0].innerHTML;
-        //  // vehicle No which is planned to arrive first
-        //  plainNo2 = xmlDoc.getElementsByTagName("plainNo2")[0].innerHTML;
-        //  console.log("Hello World");
+  xmlDoc = xmlParser.parseFromString(xml_data, "text/xml");
+
+         // Expected arriving time 1
+         arrmsg1 = xmlDoc.getElementsByTagName("arrmsg1")[0].innerHTML;
+         // Expected arriving time 2
+         arrmsg2 = xmlDoc.getElementsByTagName("arrmsg2")[0].innerHTML;
+         // vehicle No which is planned to arrive first
+         plainNo1 = xmlDoc.getElementsByTagName("plainNo1")[0].innerHTML;
+         // vehicle No which is planned to arrive first
+         plainNo2 = xmlDoc.getElementsByTagName("plainNo2")[0].innerHTML;
+         console.log("Hello World");
   // document.getElementById("bri_data").innerHTML = data.bri_data;
   // document.getElementById("di_data").innerHTML = data.di_data;
   // document.getElementById("Amb_temp_data").innerHTML = calAmb(data.Amb_temp_data);
