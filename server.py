@@ -22,6 +22,12 @@ service id get_bus_data
     system.property.write xml_data $last.body
   exit
 exit
+service id get_bus_info
+  on start
+    http.send ws.bus.go.kr 80 /api/rest/arrive/getLowArrInfoByRoute GET "" {} {"serviceKey":"/lGKaos/Ylfttaf7fO9+7SwZ9UjlA8x0FUyXfnTut8I2T8pP6g/xNbcUuU591ilyIPa851EvrPZ8kQ9PvecrXQ==","stId":"113000202","busRouteId":"100100332","ord":"36"}
+    system.property.write station_data $last.body
+  exit
+exit
 service id send_data
   on start https.send thingplugpf.sktiot.com 9443 /$system.AppEUI$/v1_0/mgmtCmd-$system.LTID$_extDevMgmt PUT $system.send_body$ {"Accpet":"$system.accept$","X-M2M-RI":"$system.X-M2M-RI$","X-M2M-Origin":"$system.X-M2M-Origin$","uKey":"$system.uKey$","Content-Type":"$system.content_type_send$"}
 exit
@@ -39,7 +45,19 @@ service id test
     https.send thingplugpf.sktiot.com 9443 /$system.AppEUI$/v1_0/remoteCSE-$system.LTID$/container-LoRa POST $system.connect_body$ $last
   exit
 exit
-
+service id init
+  on start
+    # service connection_device $system.device3_mac$ $system.POST$ $system.cassia_mac$
+    # service configure_device $system.device3_mac$ $system.en_sensor$ $system.cassia_mac$
+  exit
+exit
+service id send_data_to_ws
+  on start
+    content = "{\"xml_data\":\"$system.xml_data$\"}"
+    interface.send websocket_server "$content$"
+    debug content $content
+  exit
+exit
 
 interface id webserver
   on #
@@ -50,6 +68,26 @@ interface id webserver
   on /api/send_data
     service send_data
   exit
+  on /api/send_data_off
+    service send_data_off
+  exit
+  on /api/get_xml_data
+    return $system.station_data
+  exit
   type http server
   port 80
+exit
+
+interface id websocket_server
+  port 8081
+  type ws server
+  on connect respond (service init)
+exit
+
+timer id update_1sec
+  interval 10000
+  on start
+    service send_data_to_ws
+  exit
+  active
 exit
