@@ -12,7 +12,7 @@
   height: 20vh;
   left: 0;
   background-size: 30%!important;
-  background-position: 50% 50%!important;
+  background-position: 5% 50%!important;
 }
 
 .img .content{
@@ -23,4 +23,16 @@
      color: white;
      z-index: 2;
      text-align: center;
+}
+
+
+.frame_border{
+  border: 2px solid darkgrey;
+  border-radius: 5px;
+}
+
+.bus_num{
+  display: inline-grid;
+align-items: center;
+justify-content: center;
 }
