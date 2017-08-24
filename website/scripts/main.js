@@ -6,8 +6,8 @@ var plainNo2 = "";
 var ws = new WebSocket("ws://211.253.9.191:8081");
 ws.onmessage = function(message) {
   // data = JSON.parse(message.data);
-  console.log(data);
-  xml_data = data;
+  console.log(message.data);
+  xml_data = message.data;
          xmlDoc = xmlParser.parseFromString(xml_data, "text/xml");
 
          // Expected arriving time 1
