@@ -57,7 +57,7 @@
   background-color: initial;
   background-size: cover;
   will-change: transform,top;
-  height: 20vh;
+  height: 300px;
   left: 0;
   background-size: 100%!important;
   background-position: 5% 50%!important;
@@ -77,10 +77,12 @@
 .frame_border{
   border: 2px solid darkgrey;
   border-radius: 5px;
+  height: 370px;
 }
 
 .bus_num{
   display: inline-grid;
 align-items: center;
 justify-content: center;
+height: 350px;
 }
