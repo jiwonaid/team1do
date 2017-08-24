@@ -11,17 +11,17 @@ var ws = new WebSocket("ws://211.253.9.191:8081");
 ws.onmessage = function(message) {
   // data = JSON.parse(message.data);
   console.log(message);
-  xml_data = message.data;
-  xmlDoc = xmlParser.parseFromString(xml_data, "text/xml");
+  xml_data_websocket = message.data;
+  xmlDoc_websocket = xmlParser.parseFromString(xml_data_websocket, "text/xml");
 
          // Expected arriving time 1
-         arrmsg1 = xmlDoc.getElementsByTagName("arrmsg1")[0].innerHTML;
+         arrmsg1 = xmlDoc_websocket.getElementsByTagName("arrmsg1")[0].innerHTML;
          // Expected arriving time 2
-         arrmsg2 = xmlDoc.getElementsByTagName("arrmsg2")[0].innerHTML;
+         arrmsg2 = xmlDoc_websocket.getElementsByTagName("arrmsg2")[0].innerHTML;
          // vehicle No which is planned to arrive first
-         plainNo1 = xmlDoc.getElementsByTagName("plainNo1")[0].innerHTML;
+         plainNo1 = xmlDoc_websocket.getElementsByTagName("plainNo1")[0].innerHTML;
          // vehicle No which is planned to arrive first
-         plainNo2 = xmlDoc.getElementsByTagName("plainNo2")[0].innerHTML;
+         plainNo2 = xmlDoc_websocket.getElementsByTagName("plainNo2")[0].innerHTML;
          console.log("Hello World");
   // document.getElementById("bri_data").innerHTML = data.bri_data;
   // document.getElementById("di_data").innerHTML = data.di_data;
