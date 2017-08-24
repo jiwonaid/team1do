@@ -1,0 +1,10 @@
+.image {
+    position:relative;
+    float:left; /* optional */
+}
+.image .title {
+    position:absolute;
+    top:10px; /* in conjunction with left property, decides the text position */
+    left:10px;
+    width:300px; /* optional, though better have one */
+}

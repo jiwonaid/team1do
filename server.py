@@ -11,7 +11,7 @@ property content_type_send application/xml
 property send_body "<?xml version=\"1.0\" encoding=\"UTF-8\"?><m2m:mgc xmlns:m2m=\"http://www.onem2m.org/xml/protocols\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><exe>true</exe><exra>280101</exra></m2m:mgc>"
 property send_body_off "<?xml version=\"1.0\" encoding=\"UTF-8\"?><m2m:mgc xmlns:m2m=\"http://www.onem2m.org/xml/protocols\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><exe>true</exe><exra>280100</exra></m2m:mgc>"
 property uKey VS9zQkEyK3FVWlpwcHNYNXp4V2xYREVXbUdwY3dnQnhNL1dGV2FnT01scElReldhejJNRzJJclFSZ3I1bjN5UA==
-property dir /root/Desktop/web
+property dir /root/Desktop/team1do/website
 
 service id connect
   on start https.send thingplugpf.sktiot.com 9443 /$system.AppEUI$/v1_0/remoteCSE-$system.LTID$/container-LoRa POST $system.connect_body$ {"X-M2M-RI":"$system.X-M2M-RI$","X-M2M-Origin":"$system.X-M2M-Origin$","X-M2M-NM":"$system.X-M2M-NM$","uKey":"$system.uKey$","Content-Type":"$system.content_type_connect$"}
@@ -53,7 +53,7 @@ service id init
 exit
 service id send_data_to_ws
   on start
-    content = "{\"xml_data\":\"$system.xml_data$\"}"
+    content = "{\"xml_data\":\"$system.station_data$\"}"
     interface.send websocket_server "$content$"
     debug content $content
   exit
@@ -84,8 +84,8 @@ interface id websocket_server
   on connect respond (service init)
 exit
 
-timer id update_1sec
-  interval 10000
+timer id update_10sec
+  interval 100000
   on start
     service send_data_to_ws
   exit

@@ -5,6 +5,7 @@ var plainNo1 = "";
 var plainNo2 = "";
 var ws = new WebSocket("ws://211.253.9.191:8081");
 ws.onmessage = function(message) {
+  console.log(data)
   data = JSON.parse(message.data);
   console.log(data);
   // document.getElementById("bri_data").innerHTML = data.bri_data;
