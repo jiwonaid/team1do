@@ -1,10 +1,17 @@
-.image {
-    position:relative;
-    float:left; /* optional */
+.img{
+    position: relative;
+    background-image: url(./assets/images/main_bus_stop.png);
+    height: 100vh;
+    background-size: cover;
 }
-.image .title {
-    position:absolute;
-    top:10px; /* in conjunction with left property, decides the text position */
-    left:10px;
-    width:300px; /* optional, though better have one */
+
+.img .content{
+     position: absolute;
+     top:50%;
+     left:50%;
+     transform: translate(-50%, -50%);
+     font-size:5rem;
+     color: white;
+     z-index: 2;
+     text-align: center;
 }
