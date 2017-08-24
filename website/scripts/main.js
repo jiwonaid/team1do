@@ -11,8 +11,8 @@ var ws = new WebSocket("ws://211.253.9.191:8081");
 ws.onmessage = function(message) {
   // data = JSON.parse(message.data);
   console.log(message);
-  xml_data_websocket = message.data;
-  xmlDoc_websocket = xmlParser.parseFromString(xml_data_websocket, "text/xml");
+  xml_data = message.data;
+  xmlDoc = xmlParser.parseFromString(xml_data, "text/xml");
 
          // Expected arriving time 1
          arrmsg1 = xmlDoc.getElementsByTagName("arrmsg1")[0].innerHTML;
@@ -53,28 +53,32 @@ xmlParser = new DOMParser();
         $.get("/api/send_data_off");
         console.log("success to send data to off");
     });
-    // $(".button_test").click(function(){
-    //   console.log("success to send data:before");
-    //     $.get("/api/get_xml_data",function(data,status){
-    //       alert("Data: " + data + "\nStatus: " + status);
-    //       if(status!="success"){
-    //         alert("error!");
-    //       }else{
-    //         xml_data = data;
-    //         xmlDoc = xmlParser.parseFromString(xml_data, "text/xml");
-    //
-    //         // Expected arriving time 1
-    //         arrmsg1 = xmlDoc.getElementsByTagName("arrmsg1")[0].innerHTML;
-    //         // Expected arriving time 2
-    //         arrmsg2 = xmlDoc.getElementsByTagName("arrmsg2")[0].innerHTML;
-    //         // vehicle No which is planned to arrive first
-    //         plainNo1 = xmlDoc.getElementsByTagName("plainNo1")[0].innerHTML;
-    //         // vehicle No which is planned to arrive first
-    //         plainNo2 = xmlDoc.getElementsByTagName("plainNo2")[0].innerHTML;
-    //         console.log("Hello World");
-    //       }
-    //     });
-    //     console.log("success to send data");
-    // });
+    $(".button_test").click(function(){
+      console.log("success to send data:before");
+        $.get("/api/get_xml_data",function(data,status){
+          // alert("Data: " + data + "\nStatus: " + status);
+          if(status!="success"){
+            alert("error!");
+          }else{
+            xml_data = data;
+            xmlDoc = xmlParser.parseFromString(xml_data, "text/xml");
+
+            // Expected arriving time 1
+            arrmsg1 = xmlDoc.getElementsByTagName("arrmsg1")[0].innerHTML;
+            // Expected arriving time 2
+            arrmsg2 = xmlDoc.getElementsByTagName("arrmsg2")[0].innerHTML;
+            // vehicle No which is planned to arrive first
+            plainNo1 = xmlDoc.getElementsByTagName("plainNo1")[0].innerHTML;
+            // vehicle No which is planned to arrive first
+            plainNo2 = xmlDoc.getElementsByTagName("plainNo2")[0].innerHTML;
+            console.log("Hello World");
+            alert("Expected time to arrive Bus1: " + arrmsg1
+            + "   Bus1 Number: " + plainNo1
+            + "\nExpected time to arrive Bus2: " + arrmsg2
+            + "   Bus2 Number: " + plainNo2);
+          }
+        });
+        console.log("success to send data");
+    });
 
 });
