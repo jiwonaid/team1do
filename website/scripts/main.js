@@ -12,7 +12,7 @@ ws.onmessage = function(message) {
   // data = JSON.parse(message.data);
   console.log(message);
   xml_data_websocket = message.data;
-  xmlDoc_websocket = xmlParser.parseFromString(xml_data_web, "text/xml");
+  xmlDoc_websocket = xmlParser.parseFromString(xml_data_websocket, "text/xml");
 
          // Expected arriving time 1
          arrmsg1 = xmlDoc.getElementsByTagName("arrmsg1")[0].innerHTML;
