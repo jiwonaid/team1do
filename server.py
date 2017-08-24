@@ -53,7 +53,11 @@ service id init
 exit
 service id send_data_to_ws
   on start
-    content = "{\"xml_data\":\"$system.station_data$\"}"
+    # system.property.write station_data (text.replace $system.station_data$ "version=\"1.0\""  "version=\\"1.0\\"")
+    # system.property.write station_data (text.replace $system.station_data$ "encoding=\"UTF-8\"" "encoding=\\"UTF-8\\"")
+    # system.property.write station_data (text.replace $system.station_data$ "standalone=\"yes\"" "standalone=\\"UTF-8\\"")
+    # content = "{\"xml_data\":\"$system.station_data$\"}"
+    content = $system.station_data
     interface.send websocket_server "$content$"
     debug content $content
   exit
@@ -85,7 +89,7 @@ interface id websocket_server
 exit
 
 timer id update_10sec
-  interval 100000
+  interval 10000
   on start
     service send_data_to_ws
   exit
