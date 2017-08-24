@@ -11,7 +11,7 @@
   will-change: transform,top;
   height: 20vh;
   left: 0;
-  background-size: 30%!important;
+  background-size: 100%!important;
   background-position: 5% 50%!important;
 }
 
