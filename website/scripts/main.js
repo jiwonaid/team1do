@@ -44,7 +44,27 @@ xmlParser = new DOMParser();
     $(".button_send_data").click(function(){
       console.log("success to send data:before");
         $.get("/api/send_data",function(data,status){
-          alert("Data: " + data + "\nStatus: " + status);
+          // alert("Data: " + data + "\nStatus: " + status);
+          if(status!="success"){
+            alert("error!");
+          }else{
+            xml_data = data;
+            xmlDoc = xmlParser.parseFromString(xml_data, "text/xml");
+
+            // Expected arriving time 1
+            arrmsg1 = xmlDoc.getElementsByTagName("arrmsg1")[0].innerHTML;
+            // Expected arriving time 2
+            arrmsg2 = xmlDoc.getElementsByTagName("arrmsg2")[0].innerHTML;
+            // vehicle No which is planned to arrive first
+            plainNo1 = xmlDoc.getElementsByTagName("plainNo1")[0].innerHTML;
+            // vehicle No which is planned to arrive first
+            plainNo2 = xmlDoc.getElementsByTagName("plainNo2")[0].innerHTML;
+            console.log("Hello World");
+            alert("Expected time to arrive Bus1: " + arrmsg1
+            + "   Bus1 Number: " + plainNo1
+            + "\nExpected time to arrive Bus2: " + arrmsg2
+            + "   Bus2 Number: " + plainNo2);
+          }
         });
         console.log("success to send data");
     });

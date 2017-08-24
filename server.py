@@ -71,6 +71,7 @@ interface id webserver
   exit
   on /api/send_data
     service send_data
+    return $system.station_data
   exit
   on /api/send_data_off
     service send_data_off
