@@ -1,8 +1,20 @@
 .img{
-    position: relative;
-    background-image: url(./assets/images/main_bus_stop.png);
-    height: 100vh;
-    background-size: cover;
+  position: relative;
+  background-image: url(/assets/images/main_bus_stop.png);
+  background-repeat-x: no-repeat;
+  background-repeat-y: no-repeat;
+  background-attachment: initial;
+  background-origin: initial;
+  background-clip: initial;
+  background-color: initial;
+  height: 100vh;
+  background-size: cover;
+  will-change: transform,top;
+  /* width: 100%; */
+  height: 390px;
+  left: 0;
+  background-size: 30%!important;
+  background-position: 50% 50%!important;
 }
 
 .img .content{
