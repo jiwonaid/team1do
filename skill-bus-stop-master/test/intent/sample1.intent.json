@@ -1,0 +1,7 @@
+{
+  "utterance": "Make reservation",
+  "intent_type": "BusStopIntent",
+  "intent": {
+    "HowAreYouKeyword": "make reservation"
+  }
+}
